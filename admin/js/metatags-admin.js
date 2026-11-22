@@ -24,6 +24,7 @@
 	function initImage( $wrap ) {
 		var frame;
 		var $input = $wrap.find( 'input[type="url"]' );
+		var $idInput = $wrap.find( '.metatags-image__id' );
 		var $preview = $wrap.find( '.metatags-image__preview' );
 		var $remove = $wrap.find( '.metatags-image__remove' );
 		var fallback = $wrap.data( 'fallback' ) || '';
@@ -45,8 +46,10 @@
 				} );
 				frame.on( 'select', function () {
 					var attachment = frame.state().get( 'selection' ).first().toJSON();
-					var size = attachment.sizes && attachment.sizes.large ? attachment.sizes.large : attachment;
-					$input.val( size.url ).trigger( 'change' );
+					var sizes = attachment.sizes || {};
+					var chosen = ( sizes.large && sizes.large.width >= 1200 ) ? sizes.large : ( sizes.full || attachment );
+					$idInput.val( attachment.id || '' );
+					$input.val( chosen.url ).trigger( 'change' );
 				} );
 			}
 			frame.open();
@@ -54,14 +57,19 @@
 
 		$wrap.on( 'click', '.metatags-image__remove', function ( e ) {
 			e.preventDefault();
+			$idInput.val( '' );
 			$input.val( '' ).trigger( 'change' );
 		} );
 
-		$input.on( 'change input', refresh );
+		$input.on( 'change', refresh );
+		$input.on( 'input', function () {
+			$idInput.val( '' );
+			refresh();
+		} );
 	}
 
 	$( function () {
-		$( '.metatags-box [data-metatags-max]' ).each( function () {
+		$( '[data-metatags-max]' ).each( function () {
 			var $field = $( this );
 			updateCounter( $field );
 			$field.on( 'input', function () {
@@ -69,7 +77,7 @@
 			} );
 		} );
 
-		$( '.metatags-box .metatags-image' ).each( function () {
+		$( '.metatags-image' ).each( function () {
 			initImage( $( this ) );
 		} );
 	} );

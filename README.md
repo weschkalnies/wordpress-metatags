@@ -9,11 +9,15 @@ No upsells, no tracking, no dashboard widgets – one meta box and one settings 
 
 - **Title** – replaces the document `<title>` (via `pre_get_document_title`).
 - **Description** – `<meta name="description">`, falls back to the excerpt.
-- **Robots** – `noindex`, `nofollow`, `max-snippet:N` … merged into the robots tag WordPress already prints (`wp_robots`), so there is never a second robots tag.
-- **Open Graph** – `og:title`, `og:description`, `og:image` (media library picker, falls back to the featured image incl. width/height/alt), `og:type`, `og:url`, `og:site_name`, `og:locale`, `article:published_time` / `modified_time`.
-- **Twitter / X Card** – `summary_large_image` when an image is available.
+- **Canonical URL** – optional per-post override via `get_canonical_url`.
+- **Robots** – `noindex` and `nofollow` checkboxes plus extra directives (`max-snippet:N`, …) merged into the robots tag WordPress already prints (`wp_robots`), and `noindex` posts are excluded from the XML sitemap.
+- **Open Graph** – `og:title`, `og:description`, `og:image` (media library picker, falls back to the featured image or a global default image in settings incl. width/height/alt), `og:type`, `og:url`, `og:site_name`, `og:locale`, `article:published_time` / `modified_time`.
+- **Twitter / X Card** – `summary_large_image` when an image is available (works with or without Open Graph), plus optional `twitter:site` handle in settings.
+- **Fediverse / Mastodon** – `fediverse:creator` meta tag via global default or per-author user profile field (`metatags_fediverse`).
+- **Structured data (JSON-LD)** – minimal, valid Schema.org `@graph` (`WebSite`, `Organization`, `WebPage`, `BlogPosting`/`Article`, `CollectionPage`/`ProfilePage`), optional and toggleable.
+- **Archives & taxonomies** – automatic description, Open Graph and Twitter Card tags for categories, tags, custom taxonomies, authors, post type archives and dates, per-term meta fields (title, description, robots, OG image), plus optional `noindex` toggles (excluding authors/tags/noindex terms from the XML sitemap).
 - **Keywords** and **custom head HTML** – optional, off by default. Raw HTML needs the `unfiltered_html` capability; other roles may only add `<meta>` and `<link>` tags.
-- Works for posts, pages and all public custom post types, classic and block editor.
+- **Admin UX & safeguards** – works for posts, pages and selectable public custom post types, with a native block editor sidebar, classic meta box, post list status column (`noindex` & override badges) and an admin warning if another SEO plugin is active.
 - Character counters, image preview, placeholders that show the automatic fallback values.
 - All fields are registered post meta and readable/writable via the REST API (except custom HTML) – handy for scripts or AI/MCP tools.
 - German translation included (`de_DE`, `de_DE_formal`).
@@ -47,6 +51,19 @@ add_filter( 'metatags_tags', function ( $tags, $post ) {
 	$tags[] = array( 'name', 'twitter:site', '@example' );
 	return $tags;
 }, 10, 2 );
+
+// Taxonomies that get term meta fields (default: all public taxonomies except post_format).
+add_filter( 'metatags_taxonomies', function ( $taxonomies ) {
+	return array_diff( $taxonomies, array( 'post_tag' ) );
+} );
+
+// Modify Schema.org JSON-LD @graph nodes before output.
+add_filter( 'metatags_schema', function ( $graph, $post ) {
+	return $graph;
+}, 10, 2 );
+
+// Hide the developer info card on the settings page.
+add_filter( 'metatags_show_about_card', '__return_false' );
 ```
 
 ## Post meta keys
@@ -55,12 +72,24 @@ add_filter( 'metatags_tags', function ( $tags, $post ) {
 |---|---|
 | Title | `_metaTitle` |
 | Description | `_metaDesc` |
+| Canonical URL | `_metaCanonical` |
 | Keywords | `_metaKeywords` |
 | Robots | `_metaRobots` |
 | Custom HTML | `_metaCustom` (not in REST) |
 | OG title / description | `_metaOGTitle`, `_metaOGDesc` |
 | OG URL / site name / type | `_metaOGURL`, `_metaOGSiteName`, `_metaOGType` |
 | OG image (URL) | `_metaOGImage` |
+| OG image attachment ID | `_metaOGImageId` |
+
+Term meta keys (for public taxonomies): `_metaTitle`, `_metaDesc`, `_metaRobots`, `_metaOGImage`, `_metaOGImageId`.
+User profile meta key (Fediverse handle): `metatags_fediverse`.
+
+## Development & checks
+
+```sh
+composer install
+composer check   # runs PHPCS (WordPress Coding Standards), PHPStan and PHPUnit
+```
 
 ## Building a release
 

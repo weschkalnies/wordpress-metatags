@@ -1,0 +1,12 @@
+includes:
+	- vendor/szepeviktor/phpstan-wordpress/extension.neon
+
+parameters:
+	level: 5
+	treatPhpDocTypesAsCertain: false
+	bootstrapFiles:
+		- tests/phpstan-bootstrap.php
+	paths:
+		- metatags.php
+		- uninstall.php
+		- includes

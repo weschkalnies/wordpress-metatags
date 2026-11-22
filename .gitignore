@@ -4,5 +4,7 @@ Thumbs.db
 *.log
 /vendor/
 /node_modules/
+/.phpunit.cache
+/composer.lock
 .idea/
 .vscode/

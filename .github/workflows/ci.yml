@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: [ '7.4', '8.1', '8.4' ]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+      - name: PHP syntax check
+        run: find . -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
+      - uses: actions/setup-node@v4
+        if: matrix.php == '8.4'
+        with:
+          node-version: '22'
+      - name: JS syntax check
+        if: matrix.php == '8.4'
+        run: |
+          node --check admin/js/metatags-admin.js
+          node --check admin/js/metatags-editor.js
+
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --no-progress
+      - name: PHPCS, PHPStan & PHPUnit
+        run: composer check

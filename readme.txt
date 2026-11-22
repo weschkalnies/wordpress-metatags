@@ -5,7 +5,7 @@ Tags: meta tags, open graph, seo, robots, twitter card
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.0.1
+Stable tag: 2.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,19 +17,27 @@ Adds a "Meta Tags" box to posts, pages and all public custom post types:
 
 * **Title** – replaces the document `<title>`.
 * **Description** – `<meta name="description">`, falls back to the excerpt.
-* **Robots** – noindex, nofollow, max-snippet … merged into the robots tag WordPress already outputs.
-* **Open Graph** – og:title, og:description, og:image (media library picker, falls back to the featured image), og:type, og:url, og:site_name, og:locale, article times.
-* **Twitter / X Card** – `summary_large_image` when an image is available.
+* **Canonical URL** – optional per-post override via WordPress's canonical API.
+* **Robots** – noindex/nofollow toggles plus extra directives (max-snippet …) merged into the robots tag WordPress already outputs; noindex posts are excluded from the XML sitemap.
+* **Open Graph** – og:title, og:description, og:image (media library picker, falls back to the featured image or a global default image in settings), og:type, og:url, og:site_name, og:locale, article times.
+* **Twitter / X Card** – `summary_large_image` when an image is available, plus optional `twitter:site`.
+* **Fediverse / Mastodon** – `fediverse:creator` tag (global default or per-author profile field).
+* **Structured data (JSON-LD)** – minimal Schema.org `@graph` (`WebSite`, `Organization`, `WebPage`, `Article`/`BlogPosting`, archives).
+* **Archives & taxonomies** – automatic tags and per-term meta fields (title, description, robots, OG image) plus optional archive noindex switches.
+* **Block editor sidebar** – native sidebar with live placeholders and character counters (plus classic meta box fallback).
+* **Post list column** – shows `noindex` and custom override badges directly in post overview tables.
 * **Keywords** and **custom HTML** – optional, off by default.
 
-Which tags are used is configured under *Settings → Meta Tags*.
+Which tags and post types are used is configured under *Settings → Meta Tags*.
 
-All fields are registered post meta and available via the REST API (except custom HTML).
+All post and term fields are registered meta and available via the REST API (except custom HTML).
 
 = Filters =
 
 * `metatags_post_types` – post types the plugin is active for.
+* `metatags_taxonomies` – taxonomies with per-term meta fields.
 * `metatags_tags` – the list of `[attribute, name, content]` tags before output.
+* `metatags_schema` – Schema.org `@graph` nodes before JSON-LD output.
 
 == Installation ==
 
@@ -38,6 +46,18 @@ All fields are registered post meta and available via the REST API (except custo
 3. Edit a post or page and fill in the "Meta Tags" box.
 
 == Changelog ==
+
+= 2.1.0 =
+* New: Canonical URL override per post via WordPress core's `get_canonical_url` filter.
+* New: Global default Open Graph image in Settings → Meta Tags (used as fallback for the front page, archives and posts without an image).
+* New: Archive and taxonomy support – automatic tags, per-term meta fields (title, description, robots, OG image) and optional archive `noindex` switches (with XML sitemap exclusion).
+* New: Improved Robots UX with dedicated `noindex` and `nofollow` checkboxes plus extra directives field.
+* New: Native block editor sidebar with live placeholders, character counters and media library picker.
+* New: `fediverse:creator` (global default + user profile field) and `twitter:site` settings.
+* New: Selectable post types in Settings → Meta Tags and conflict warning if another SEO plugin is active.
+* New: Meta Tags status column (`noindex` and override badges) in post list tables.
+* New: Minimal Schema.org JSON-LD output (`WebSite`, `Organization`, `WebPage`, `BlogPosting`/`Article`, archive pages).
+* Fixed: Late `init` meta registration for CPTs, unified `og:type` CPT fallback, `og:image:width`/`height`/`alt` for manually selected images, XML sitemap exclusion for `noindex` posts, front page meta description, independent Twitter Card output and consistent password protection.
 
 = 2.0.1 =
 * Security hardening: custom HTML from users without unfiltered_html is rebuilt from an attribute allowlist (no http-equiv redirects, no stylesheets, only safe link rels).

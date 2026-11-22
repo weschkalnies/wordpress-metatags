@@ -2,23 +2,27 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Meta Tags 2.0.1\n"
-"Report-Msgid-Bugs-To: https://github.com/weschkalnies/wordpress-metatags/issues\n"
+"Project-Id-Version: Meta Tags 2.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/work\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-21T21:36:18+00:00\n"
+"POT-Creation-Date: 2026-11-22T22:01:10+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: metatags\n"
 
 #. Plugin Name of the plugin
 #: metatags.php
-#: includes/class-metatags-meta-box.php:37
-#: includes/class-metatags-settings.php:193
-#: includes/class-metatags-settings.php:194
+#: includes/class-metatags-block-editor.php:62
+#: includes/class-metatags-columns.php:60
+#: includes/class-metatags-columns.php:66
+#: includes/class-metatags-meta-box.php:50
+#: includes/class-metatags-settings.php:461
+#: includes/class-metatags-settings.php:462
+#: includes/class-metatags-term-meta.php:176
 msgid "Meta Tags"
 msgstr ""
 
@@ -42,171 +46,370 @@ msgstr ""
 msgid "https://www.weschkalnies.de"
 msgstr ""
 
-#: includes/class-metatags-meta-box.php:61
+#: includes/class-metatags-block-editor.php:63
+#: includes/class-metatags-meta-box.php:145
+msgid "Search engines"
+msgstr ""
+
+#: includes/class-metatags-block-editor.php:64
+#: includes/class-metatags-meta-box.php:155
+msgid "Social media (Open Graph)"
+msgstr ""
+
+#: includes/class-metatags-block-editor.php:65
+#: includes/class-metatags-columns.php:95
+#: includes/class-metatags-meta-box.php:124
+#: includes/class-metatags-meta-box.php:157
+#: includes/class-metatags-settings.php:238
+#: includes/class-metatags-term-meta.php:181
+msgid "Title"
+msgstr ""
+
+#: includes/class-metatags-block-editor.php:66
+#: includes/class-metatags-columns.php:98
+#: includes/class-metatags-meta-box.php:127
+#: includes/class-metatags-meta-box.php:158
+#: includes/class-metatags-settings.php:239
+#: includes/class-metatags-term-meta.php:189
+msgid "Description"
+msgstr ""
+
+#: includes/class-metatags-block-editor.php:67
+#: includes/class-metatags-meta-box.php:130
+#: includes/class-metatags-settings.php:240
+msgid "Canonical URL"
+msgstr ""
+
+#: includes/class-metatags-block-editor.php:68
+#: includes/class-metatags-meta-box.php:130
+msgid "Only needed if the canonical URL differs from the permalink."
+msgstr ""
+
+#: includes/class-metatags-block-editor.php:69
+msgid "Discourage indexing (noindex)"
+msgstr ""
+
+#: includes/class-metatags-block-editor.php:70
+msgid "Do not follow links (nofollow)"
+msgstr ""
+
+#: includes/class-metatags-block-editor.php:71
+#: includes/class-metatags-meta-box.php:291
+#: includes/class-metatags-term-meta.php:211
+msgid "More directives"
+msgstr ""
+
+#: includes/class-metatags-block-editor.php:72
+#: includes/class-metatags-meta-box.php:293
+#: includes/class-metatags-term-meta.php:213
+msgid "Optional, comma separated: noarchive, nosnippet, noimageindex, notranslate, max-snippet:N, max-image-preview:none|standard|large, max-video-preview:N."
+msgstr ""
+
+#: includes/class-metatags-block-editor.php:73
+#: includes/class-metatags-meta-box.php:136
+#: includes/class-metatags-settings.php:242
+msgid "Keywords"
+msgstr ""
+
+#: includes/class-metatags-block-editor.php:74
+#: includes/class-metatags-meta-box.php:136
+msgid "Comma separated."
+msgstr ""
+
+#: includes/class-metatags-block-editor.php:75
+msgid "Custom HTML can be edited in the Meta Tags box below the editor."
+msgstr ""
+
+#: includes/class-metatags-block-editor.php:76
+#: includes/class-metatags-meta-box.php:313
+msgid "Image"
+msgstr ""
+
+#: includes/class-metatags-block-editor.php:77
+#: includes/class-metatags-meta-box.php:81
+#: includes/class-metatags-settings.php:213
+#: includes/class-metatags-term-meta.php:142
 msgid "Choose Open Graph image"
 msgstr ""
 
-#: includes/class-metatags-meta-box.php:62
+#: includes/class-metatags-block-editor.php:78
+#: includes/class-metatags-meta-box.php:82
+#: includes/class-metatags-settings.php:214
+#: includes/class-metatags-term-meta.php:143
 msgid "Use this image"
 msgstr ""
 
+#: includes/class-metatags-block-editor.php:79
+#: includes/class-metatags-meta-box.php:321
+#: includes/class-metatags-settings.php:306
+#: includes/class-metatags-term-meta.php:232
+msgid "Select image"
+msgstr ""
+
+#: includes/class-metatags-block-editor.php:80
+#: includes/class-metatags-meta-box.php:322
+#: includes/class-metatags-settings.php:307
+#: includes/class-metatags-term-meta.php:233
+msgid "Remove"
+msgstr ""
+
+#: includes/class-metatags-block-editor.php:81
+#: includes/class-metatags-meta-box.php:324
+msgid "Recommended: 1200 × 630 px. Without an image the featured image or default image is used."
+msgstr ""
+
+#: includes/class-metatags-block-editor.php:82
+#: includes/class-metatags-meta-box.php:160
+msgid "Type"
+msgstr ""
+
+#: includes/class-metatags-block-editor.php:83
+msgid "e.g. article, website, product"
+msgstr ""
+
+#: includes/class-metatags-block-editor.php:84
+#: includes/class-metatags-meta-box.php:161
+msgid "URL"
+msgstr ""
+
+#: includes/class-metatags-block-editor.php:85
+#: includes/class-metatags-meta-box.php:161
+msgid "Only needed if it differs from the permalink."
+msgstr ""
+
+#: includes/class-metatags-block-editor.php:86
+#: includes/class-metatags-meta-box.php:162
+msgid "Site name"
+msgstr ""
+
+#: includes/class-metatags-block-editor.php:87
+#: includes/class-metatags-meta-box.php:169
+msgid "All meta tags are switched off."
+msgstr ""
+
+#: includes/class-metatags-block-editor.php:88
+#: includes/class-metatags-meta-box.php:171
+msgid "Open settings"
+msgstr ""
+
+#: includes/class-metatags-block-editor.php:89
+#: includes/class-metatags-meta-box.php:174
+msgid "Grey placeholder text shows the value used automatically when a field is left empty."
+msgstr ""
+
 #. translators: 1: current number of characters, 2: recommended maximum.
-#: includes/class-metatags-meta-box.php:64
+#: includes/class-metatags-block-editor.php:91
+#: includes/class-metatags-meta-box.php:84
+#: includes/class-metatags-term-meta.php:145
 #, php-format
 msgid "%1$d / %2$d characters"
 msgstr ""
 
-#: includes/class-metatags-meta-box.php:92
-#: includes/class-metatags-meta-box.php:137
-#: includes/class-metatags-settings.php:127
-msgid "Title"
+#: includes/class-metatags-columns.php:89
+msgid "Excluded from search engines and the XML sitemap."
 msgstr ""
 
-#: includes/class-metatags-meta-box.php:95
-#: includes/class-metatags-meta-box.php:138
-#: includes/class-metatags-settings.php:128
-msgid "Description"
+#: includes/class-metatags-columns.php:101
+msgid "Canonical"
 msgstr ""
 
-#: includes/class-metatags-meta-box.php:100
-#: includes/class-metatags-settings.php:129
-msgid "Robots"
-msgstr ""
-
-#: includes/class-metatags-meta-box.php:103
-msgid "Comma separated, e.g. <code>noindex, nofollow</code>. Allowed: noindex, nofollow, none, noarchive, nosnippet, noimageindex, notranslate, max-snippet:N, max-image-preview:none|standard|large, max-video-preview:N. Leave empty for the default (index, follow)."
-msgstr ""
-
-#: includes/class-metatags-meta-box.php:107
-#: includes/class-metatags-settings.php:130
-msgid "Keywords"
-msgstr ""
-
-#: includes/class-metatags-meta-box.php:107
-msgid "Comma separated."
-msgstr ""
-
-#: includes/class-metatags-meta-box.php:112
-#: includes/class-metatags-settings.php:133
-msgid "Custom HTML"
-msgstr ""
-
-#: includes/class-metatags-meta-box.php:116
-msgid "Printed as-is into &lt;head&gt;, e.g. <code>&lt;meta name=\"google-site-verification\" content=\"…\"&gt;</code>"
-msgstr ""
-
-#: includes/class-metatags-meta-box.php:117
-msgid "Only &lt;meta&gt; and &lt;link&gt; tags are allowed for your user role."
-msgstr ""
-
-#: includes/class-metatags-meta-box.php:126
-msgid "Search engines"
-msgstr ""
-
-#: includes/class-metatags-meta-box.php:135
-msgid "Social media (Open Graph)"
-msgstr ""
-
-#: includes/class-metatags-meta-box.php:140
-msgid "Type"
-msgstr ""
-
-#: includes/class-metatags-meta-box.php:140
+#: includes/class-metatags-meta-box.php:160
 msgid "e.g. <code>article</code>, <code>website</code>, <code>product</code>"
 msgstr ""
 
-#: includes/class-metatags-meta-box.php:141
-msgid "URL"
+#: includes/class-metatags-meta-box.php:255
+#: includes/class-metatags-settings.php:246
+msgid "Custom HTML"
 msgstr ""
 
-#: includes/class-metatags-meta-box.php:141
-msgid "Only needed if it differs from the permalink."
+#: includes/class-metatags-meta-box.php:259
+msgid "Printed as-is into &lt;head&gt;, e.g. <code>&lt;meta name=\"google-site-verification\" content=\"…\"&gt;</code>"
 msgstr ""
 
-#: includes/class-metatags-meta-box.php:142
-msgid "Site name"
+#: includes/class-metatags-meta-box.php:260
+msgid "Only &lt;meta&gt; and &lt;link&gt; tags are allowed for your user role."
 msgstr ""
 
-#: includes/class-metatags-meta-box.php:149
-msgid "All meta tags are switched off."
+#: includes/class-metatags-meta-box.php:278
+#: includes/class-metatags-settings.php:241
+#: includes/class-metatags-term-meta.php:198
+msgid "Robots"
 msgstr ""
 
-#: includes/class-metatags-meta-box.php:151
-msgid "Open settings"
+#: includes/class-metatags-meta-box.php:283
+#: includes/class-metatags-term-meta.php:203
+msgid "Discourage search engines from indexing this page (noindex)"
 msgstr ""
 
-#: includes/class-metatags-meta-box.php:154
-msgid "Grey placeholder text shows the value used automatically when a field is left empty."
+#: includes/class-metatags-meta-box.php:287
+#: includes/class-metatags-term-meta.php:207
+msgid "Do not follow links on this page (nofollow)"
 msgstr ""
 
-#: includes/class-metatags-meta-box.php:238
-msgid "Image"
+#: includes/class-metatags-settings.php:143
+#: includes/class-metatags-settings.php:268
+msgid "Fediverse / Mastodon handle"
 msgstr ""
 
-#: includes/class-metatags-meta-box.php:245
-msgid "Select image"
+#. translators: %s: comma-separated list of active SEO plugin names.
+#: includes/class-metatags-settings.php:190
+#, php-format
+msgid "Meta Tags detected another active SEO plugin (%s). Consider disabling overlapping tag groups under Settings → Meta Tags to avoid duplicate meta tags."
 msgstr ""
 
-#: includes/class-metatags-meta-box.php:246
-msgid "Remove"
-msgstr ""
-
-#: includes/class-metatags-meta-box.php:248
-msgid "Recommended: 1200 × 630 px. Without an image the featured image is used."
-msgstr ""
-
-#: includes/class-metatags-settings.php:123
+#: includes/class-metatags-settings.php:233
 msgid "Tags"
 msgstr ""
 
-#: includes/class-metatags-settings.php:124
+#: includes/class-metatags-settings.php:234
 msgid "Behaviour"
 msgstr ""
 
-#: includes/class-metatags-settings.php:127
+#: includes/class-metatags-settings.php:235
+msgid "Archives"
+msgstr ""
+
+#: includes/class-metatags-settings.php:238
 msgid "Replaces the document &lt;title&gt; with the custom title."
 msgstr ""
 
-#: includes/class-metatags-settings.php:128
+#: includes/class-metatags-settings.php:239
 msgid "Outputs &lt;meta name=\"description\"&gt;."
 msgstr ""
 
-#: includes/class-metatags-settings.php:129
+#: includes/class-metatags-settings.php:240
+msgid "Overrides the canonical URL output by WordPress."
+msgstr ""
+
+#: includes/class-metatags-settings.php:241
 msgid "Adds directives such as noindex to the robots meta tag generated by WordPress."
 msgstr ""
 
-#: includes/class-metatags-settings.php:130
+#: includes/class-metatags-settings.php:242
 msgid "Ignored by Google and Bing – only enable if you need it for another tool."
 msgstr ""
 
-#: includes/class-metatags-settings.php:131
+#: includes/class-metatags-settings.php:243
 msgid "Open Graph"
 msgstr ""
 
-#: includes/class-metatags-settings.php:131
+#: includes/class-metatags-settings.php:243
 msgid "og:* tags for Facebook, LinkedIn, Slack, WhatsApp, Mastodon …"
 msgstr ""
 
-#: includes/class-metatags-settings.php:132
+#: includes/class-metatags-settings.php:244
 msgid "Twitter / X Card"
 msgstr ""
 
-#: includes/class-metatags-settings.php:132
+#: includes/class-metatags-settings.php:244
 msgid "twitter:card tag, uses the Open Graph values."
 msgstr ""
 
-#: includes/class-metatags-settings.php:133
+#: includes/class-metatags-settings.php:245
+msgid "Structured data (JSON-LD)"
+msgstr ""
+
+#: includes/class-metatags-settings.php:245
+msgid "Outputs minimal Schema.org JSON-LD (WebSite, WebPage, Article) in &lt;head&gt;."
+msgstr ""
+
+#: includes/class-metatags-settings.php:246
 msgid "Free-form HTML per post, printed into &lt;head&gt;."
 msgstr ""
 
-#: includes/class-metatags-settings.php:141
+#: includes/class-metatags-settings.php:254
 msgid "Automatic fallbacks"
 msgstr ""
 
-#: includes/class-metatags-settings.php:142
+#: includes/class-metatags-settings.php:255
 msgid "If a field is empty, use post title, excerpt, permalink, site name and featured image."
 msgstr ""
 
-#: includes/class-metatags-settings.php:234
+#: includes/class-metatags-settings.php:261
+msgid "Twitter / X site handle"
+msgstr ""
+
+#: includes/class-metatags-settings.php:263
+msgid "Optional site account for &lt;meta name=\"twitter:site\"&gt;."
+msgstr ""
+
+#: includes/class-metatags-settings.php:270
+msgid "Default handle for &lt;meta name=\"fediverse:creator\"&gt;. Authors can also set their own handle in their user profile."
+msgstr ""
+
+#: includes/class-metatags-settings.php:276
+msgid "Archive meta tags"
+msgstr ""
+
+#: includes/class-metatags-settings.php:276
+msgid "Output description, Open Graph and Twitter Card tags on category, tag, taxonomy, author and post type archives."
+msgstr ""
+
+#: includes/class-metatags-settings.php:277
+msgid "Noindex search results"
+msgstr ""
+
+#: includes/class-metatags-settings.php:277
+msgid "Add noindex to search result pages."
+msgstr ""
+
+#: includes/class-metatags-settings.php:278
+msgid "Noindex author archives"
+msgstr ""
+
+#: includes/class-metatags-settings.php:278
+msgid "Add noindex to author archives and exclude users from the XML sitemap."
+msgstr ""
+
+#: includes/class-metatags-settings.php:279
+msgid "Noindex tag archives"
+msgstr ""
+
+#: includes/class-metatags-settings.php:279
+msgid "Add noindex to tag archives and exclude tags from the XML sitemap."
+msgstr ""
+
+#: includes/class-metatags-settings.php:280
+msgid "Noindex date archives"
+msgstr ""
+
+#: includes/class-metatags-settings.php:280
+msgid "Add noindex to date archives."
+msgstr ""
+
+#: includes/class-metatags-settings.php:295
+msgid "Default Open Graph image"
+msgstr ""
+
+#: includes/class-metatags-settings.php:309
+msgid "Recommended: 1200 × 630 px. Used on the front page, archives, and posts without an own or featured image."
+msgstr ""
+
+#: includes/class-metatags-settings.php:355
+msgid "Post types"
+msgstr ""
+
+#: includes/class-metatags-settings.php:376
+msgid "Can also be filtered via the metatags_post_types hook."
+msgstr ""
+
+#: includes/class-metatags-settings.php:507
+msgid "Meta Tags is maintained by Nick Weschkalnies – freelance web designer & developer for agencies and direct clients."
+msgstr ""
+
+#: includes/class-metatags-settings.php:510
+#: includes/class-metatags-settings.php:546
+msgid "Buy me a coffee"
+msgstr ""
+
+#: includes/class-metatags-settings.php:528
 msgid "Settings"
+msgstr ""
+
+#: includes/class-metatags-term-meta.php:224
+msgid "Open Graph image"
+msgstr ""
+
+#: includes/class-metatags-term-meta.php:235
+msgid "Recommended: 1200 × 630 px. Without an image the default image is used."
 msgstr ""
